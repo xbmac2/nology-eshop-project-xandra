@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore"
+import { collection, getDoc, getDocs, doc } from "firebase/firestore"
 import { db } from "../../config/firebase"
 
 export const getAllProducts = async () => {
@@ -19,4 +19,17 @@ export const getAllProducts = async () => {
 
   //console.log(dataToReturn);
   return dataToReturn; //an array of Objects
+}
+
+export const getProductById = async (id) => {
+  
+  const docRef = doc(db, "flowers", id);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    throw new Error("Sorry, this product does not exist");
+  };
+
+  return {id: docSnap.id, ...docSnap.data()};
+
 }
