@@ -33,3 +33,21 @@ export const getProductById = async (id) => {
   return {id: docSnap.id, ...docSnap.data()};
 
 }
+
+export const getProductVariants = async (id) => {
+
+  const querySnapshot = await getDocs(collection(db, "flowers", id, "variants"));
+
+  // querySnapshot.forEach((doc) => {
+  //   console.log(doc.id, "->", doc.data());
+  // });
+
+  const variantsArr = querySnapshot.docs.map((doc) => {
+    return {
+      id: doc.id,
+      ...doc.data(),
+    }
+  });
+
+  return variantsArr;
+}
