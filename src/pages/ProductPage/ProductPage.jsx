@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { getProductById, getProductVariants } from "../../services/products";
 import styles from "./ProductPage.module.scss"
+import Counter from "../../components/Counter/Counter";
 
 
 const ProductPage = () => {
@@ -64,7 +65,7 @@ const ProductPage = () => {
       })}
 
       <p>Quantity:</p>
-      <p>Counter component - 1 +</p>
+      <Counter maxCount={variants[currentVariant].quantity}/>
       <button>Add to Cart</button>
       <button>Add to Favourites</button>
       </>)
