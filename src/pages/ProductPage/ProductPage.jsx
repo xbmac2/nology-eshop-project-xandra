@@ -57,10 +57,10 @@ const ProductPage = () => {
       {/* <p>Left in stock: {variants[currentVariant]?.quantity ?? "unknown"}</p> */}
       {/* <p>Left in stock: { variants && variants[currentVariant].quantity}</p> */}
 
-      <p>Colour: {variants.length > 0 && variants[currentVariant].colour}</p>
+      <p>Variant: {variants.length > 0 && variants[currentVariant].variant}</p>
       {variants.map((variant, index) => {
         return <button onClick={() => handleChangeVariant(index)} key={index}>
-          {variant.colour}
+          {variant.variant}
         </button>
       })}
 
