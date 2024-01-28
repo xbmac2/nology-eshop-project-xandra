@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage/HomePage'
 import CartPage from './pages/CartPage/CartPage'
 import NavBar from './components/NavBar/NavBar'
 import FavouritesPage from './pages/FavouritesPage/FavouritesPage'
+import ProductPage from './pages/ProductPage/ProductPage'
 
 function App() {
   
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<HomePage />}/>
         <Route path="/favourites" element={<FavouritesPage />}/>
         <Route path="/cart" element={<CartPage />}/>
+        <Route path="/product/:id" element={<ProductPage />}/>
       </Routes>
     </BrowserRouter>
   )

@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore"
+import { collection, getDoc, getDocs, doc, updateDoc } from "firebase/firestore"
 import { db } from "../../config/firebase"
 
 export const getAllProducts = async () => {
@@ -19,4 +19,50 @@ export const getAllProducts = async () => {
 
   //console.log(dataToReturn);
   return dataToReturn; //an array of Objects
+}
+
+export const getProductById = async (id) => {
+  
+  const docRef = doc(db, "flowers", id);
+  const docSnap = await getDoc(docRef);
+
+  if (!docSnap.exists()) {
+    throw new Error("Sorry, this product does not exist");
+  };
+
+  return {id: docSnap.id, ...docSnap.data()};
+
+}
+
+export const getProductVariants = async (id) => {
+
+  const querySnapshot = await getDocs(collection(db, "flowers", id, "variants"));
+
+  // querySnapshot.forEach((doc) => {
+  //   console.log(doc.id, "->", doc.data());
+  // });
+
+  const variantsArr = querySnapshot.docs.map((doc) => {
+    return {
+      id: doc.id,
+      ...doc.data(),
+    }
+  });
+
+  return variantsArr;
+}
+
+//toggling faves
+export const toggleFavourite = async (id) => {
+  const docRef = doc(db, "flowers", id);
+
+  const docSnap = await getDoc(docRef);
+
+  //console.log(docSnap.data());
+
+  await updateDoc(docRef, {
+    favourited: !docSnap.data().favourited
+  })
+
+  //testcomm
 }

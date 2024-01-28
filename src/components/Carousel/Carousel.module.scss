@@ -1,0 +1,39 @@
+.carousel {
+  position: relative;
+  max-width: 600px;
+  overflow: hidden;
+
+  //border: 1px solid green;
+  //padding: 0px, 10px;
+}
+.carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  z-index: 1;
+  transition: background-color 0.3s;
+}
+.carousel__btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.carousel__btn__prev {
+  left: 0;
+}
+.carousel__btn__next {
+  right: 0;
+}
+.carousel__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+.carousel__img:hover {
+  transform: scale(1.05);
+}

@@ -11,6 +11,7 @@ const ProductList = ({ products }) => {
           productName={product.productName}
           price={product.price}
           image={product.image}
+          id={product.id}
         />
       })}
     </section>
