@@ -16,11 +16,14 @@ const ProductPage = () => {
   const [variants, setVariants] = useState([]);
   const [currentVariant, setCurrentVariant] = useState(0);
 
+  const [favourite, setFavourite] = useState(null)
+
   useEffect(() => {
     setLoading(true);
     getProductById(id)
     .then((result) => {
-      setProduct(result)
+      setProduct(result);
+      setFavourite(result.favourited);
     })
     .catch((error) => {
       setErrorMessage(error.message);
@@ -65,9 +68,9 @@ const ProductPage = () => {
       })}
 
       <p>Quantity:</p>
-      <Counter maxCount={variants[currentVariant].quantity}/>
+      {variants && <Counter maxCount={variants[currentVariant].quantity}/>}
       <button>Add to Cart</button>
-      <button onClick={() => {toggleFavourite(id)}}>{product.favourited ? "Favourited" : "Add to Favourites"}</button>
+      <button onClick={() => {toggleFavourite(id); setFavourite(!favourite)}}>{product.favourited ? "Favourited" : "Add to Favourites"}</button>
       </>)
       }
     </main>
