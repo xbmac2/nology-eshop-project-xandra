@@ -1,4 +1,4 @@
-import { collection, getDoc, getDocs, doc } from "firebase/firestore"
+import { collection, getDoc, getDocs, doc, updateDoc } from "firebase/firestore"
 import { db } from "../../config/firebase"
 
 export const getAllProducts = async () => {
@@ -50,4 +50,19 @@ export const getProductVariants = async (id) => {
   });
 
   return variantsArr;
+}
+
+//toggling faves
+export const toggleFavourite = async (id) => {
+  const docRef = doc(db, "flowers", id);
+
+  const docSnap = await getDoc(docRef);
+
+  //console.log(docSnap.data());
+
+  await updateDoc(docRef, {
+    favourited: !docSnap.data().favourited
+  })
+
+  //testcomm
 }

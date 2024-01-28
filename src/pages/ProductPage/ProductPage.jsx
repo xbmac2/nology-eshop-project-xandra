@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import { getProductById, getProductVariants } from "../../services/products";
+import { getProductById, getProductVariants, toggleFavourite } from "../../services/products";
 import styles from "./ProductPage.module.scss"
 import Counter from "../../components/Counter/Counter";
 
@@ -67,7 +67,7 @@ const ProductPage = () => {
       <p>Quantity:</p>
       <Counter maxCount={variants[currentVariant].quantity}/>
       <button>Add to Cart</button>
-      <button>Add to Favourites</button>
+      <button onClick={() => {toggleFavourite(id)}}>{product.favourited ? "Favourited" : "Add to Favourites"}</button>
       </>)
       }
     </main>

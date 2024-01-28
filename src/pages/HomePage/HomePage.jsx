@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import styles from "./HomePage.module.scss"
-import { getAllProducts } from "../../services/products";
+import { getAllProducts, toggleFavourite } from "../../services/products";
 import ProductList from "../../containers/ProductList/ProductList";
 import Carousel from "../../components/Carousel/Carousel";
 
@@ -17,6 +17,8 @@ const HomePage = () => {
       setProducts(response);
     });
   }, [])
+
+  //toggleFavourite("CtigONUC6YvgWOrTdukq");
 
   return (
     <main >
