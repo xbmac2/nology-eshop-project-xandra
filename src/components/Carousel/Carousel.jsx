@@ -21,13 +21,13 @@ const Carousel = ({ products }) => {
 
   return (
     <div className={styles.carousel}>
-      <button onClick={prevSlide} className={styles.carousel__btn.concat(" ", styles.carousel__btn__prev)}>&lt;</button>
+      <button onClick={prevSlide} className={styles.btn.concat(" ", styles.btn__prev)}>&lt;</button>
       
       <img
         src={images[activeIndex]}
-        className={styles.carousel__img}
+        className={styles.img}
       />
-      <button onClick={nextSlide} className={styles.carousel__btn.concat(" ", styles.carousel__btn__next)}>
+      <button onClick={nextSlide} className={styles.btn.concat(" ", styles.btn__next)}>
         &gt;
       </button>
     </div>

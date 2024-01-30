@@ -1,13 +1,15 @@
 import { useState } from "react";
 import styles from "./Counter.module.scss";
 
-const Counter = ({ maxCount }) => {
+const Counter = ({ maxCount, qty, setQty }) => {
 
-  const [qty, setQty] = useState(1);
+  //const [qty, setQty] = useState(1);
 
   const handleIncrement = () => {
+    //console.log(maxCount)
     if (qty < maxCount) {
       setQty(qty + 1);
+      
     }
   }
 
@@ -19,7 +21,7 @@ const Counter = ({ maxCount }) => {
 
   return (
     <div className={styles.container}>
-      <p>Quantity: {qty}</p>
+      {/* <p>Quantity: {qty}</p> */}
       <div className={styles.counter}>
         <button onClick={handleDecrement}>-</button>
         <input type="number" name="" id="" className={styles.input} value={qty} min={1} max={maxCount} onChange={e => setQty(e.target.value)}/>

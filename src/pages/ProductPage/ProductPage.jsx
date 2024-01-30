@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { getProductById, getProductVariants, toggleFavourite } from "../../services/products";
 import styles from "./ProductPage.module.scss"
 import Counter from "../../components/Counter/Counter";
+import { CartContext } from "../../context/CartContextProvider";
 
 
 const ProductPage = () => {
@@ -15,8 +16,10 @@ const ProductPage = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [variants, setVariants] = useState([]);
   const [currentVariant, setCurrentVariant] = useState(0);
-
+  //const [maxCount, setMaxCount] = useState(null);
   const [favourite, setFavourite] = useState(null)
+
+  const [qty, setQty] = useState(1);
 
   useEffect(() => {
     setLoading(true);
@@ -40,6 +43,33 @@ const ProductPage = () => {
   const handleChangeVariant = (variantIndex) => {
     setCurrentVariant(variantIndex);
     console.log(variantIndex)
+  }
+
+  //to solve quantity and variant issue
+  useEffect(() => {
+    if (!variants.length > 0) {
+      return;
+    }
+    //setMaxCount(variants[currentVariant].quantity)
+    setQty(1);
+  }, [currentVariant]);
+
+  //cart functionality below
+  const { cart, setCart } = useContext(CartContext);
+
+  const handleAddToCart = () => {
+
+    const item = {
+      productId: variants[currentVariant].id,
+      productName: product.productName,
+      image: variants[currentVariant].image,
+      variant: variants[currentVariant].variant,
+      pricePerUnit: product.price,
+      units: qty,
+      amountInStock: variants[currentVariant].quantity
+    };
+    setCart([...cart, item]);
+    //console.log(item.amountInStock);
   }
 
   return (
@@ -67,9 +97,9 @@ const ProductPage = () => {
         </button>
       })}
 
-      <p>Quantity:</p>
-      {variants && <Counter maxCount={variants[currentVariant].quantity}/>}
-      <button>Add to Cart</button>
+      <p>Quantity: {qty}</p>
+      {variants.length > 0 && <Counter maxCount={variants[currentVariant].quantity} qty={qty} setQty={setQty}/>}
+      <button onClick={handleAddToCart}>Add to Cart</button>
       <button onClick={() => {toggleFavourite(id); setFavourite(!favourite)}}>{product.favourited ? "Favourited" : "Add to Favourites"}</button>
       </>)
       }

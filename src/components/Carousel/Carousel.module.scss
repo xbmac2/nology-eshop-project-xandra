@@ -6,7 +6,7 @@
   //border: 1px solid green;
   //padding: 0px, 10px;
 }
-.carousel__btn {
+.btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -14,26 +14,26 @@
   color: white;
   font-size: 1.5rem;
   border: none;
-  padding: 1rem;
+  padding: 10px; //1rem;
   cursor: pointer;
   z-index: 1;
   transition: background-color 0.3s;
 }
-.carousel__btn:hover {
+.btn:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
-.carousel__btn__prev {
+.btn__prev {
   left: 0;
 }
-.carousel__btn__next {
+.btn__next {
   right: 0;
 }
-.carousel__img {
+.img {
   width: 100%;
   height: auto;
   display: block;
   transition: transform 0.3s ease-in-out;
 }
-.carousel__img:hover {
+.img:hover {
   transform: scale(1.05);
 }

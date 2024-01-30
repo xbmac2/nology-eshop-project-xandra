@@ -9,6 +9,7 @@ import CartPage from './pages/CartPage/CartPage'
 import NavBar from './components/NavBar/NavBar'
 import FavouritesPage from './pages/FavouritesPage/FavouritesPage'
 import ProductPage from './pages/ProductPage/ProductPage'
+import CartContextProvider from './context/CartContextProvider'
 
 function App() {
   
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <CartContextProvider>
 
       <NavBar />
 
@@ -27,6 +29,7 @@ function App() {
         <Route path="/cart" element={<CartPage />}/>
         <Route path="/product/:id" element={<ProductPage />}/>
       </Routes>
+    </CartContextProvider>
     </BrowserRouter>
   )
 }
