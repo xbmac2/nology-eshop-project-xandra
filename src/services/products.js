@@ -1,5 +1,5 @@
 import { collection, getDoc, getDocs, doc, updateDoc } from "firebase/firestore"
-import { db } from "../../config/firebase"
+import { db } from "../../config/firebase.js"
 
 export const getAllProducts = async () => {
   const querySnapshot = await getDocs(collection(db, "flowers"));
