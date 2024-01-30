@@ -9,7 +9,7 @@ const CartList = () => {
 
   return (
     <section className={styles.container}>
-      <p>CartList container. map cards below</p>
+      
       {cart.length > 0 && cart.map((item) => {
         return <CartCard 
           key={item.productId}
@@ -23,7 +23,8 @@ const CartList = () => {
         />
       })}
 
-      <p>Subtotal:</p>
+      {cart.length > 0  && <p>Subtotal:</p>}
+      {cart.length === 0  && <p>Nothing in your cart right now</p>}
     </section>
   )
 }
