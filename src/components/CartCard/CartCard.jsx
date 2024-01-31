@@ -35,13 +35,14 @@ const CartCard = ({ productName, pricePerUnit, variant, image, units, amountInSt
     <article className={styles.card}>
       <img src={image}/>
       <div className={styles.container}>
-        <p>{productName}</p>
+        <p><b>{productName}</b></p>
         <p>{variant}</p>
         {/* <p>qty{units}</p> */}
-        <small onClick={removeItem}>Remove</small>
+        <p>${totalForItem}</p>
         <span className={styles.inline}>
           <Counter qty={qty} setQty={setQty} maxCount={amountInStock}/>
-          <p>${totalForItem}</p>
+          
+          <small onClick={removeItem}>Remove</small>
         </span>
         
       </div>

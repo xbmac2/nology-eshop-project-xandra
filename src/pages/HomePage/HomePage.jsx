@@ -3,6 +3,7 @@ import styles from "./HomePage.module.scss"
 import { getAllProducts, toggleFavourite } from "../../services/products";
 import ProductList from "../../containers/ProductList/ProductList";
 import Carousel from "../../components/Carousel/Carousel";
+import Header from "../../components/Header/Header";
 
 const HomePage = () => {
 
@@ -28,7 +29,7 @@ const HomePage = () => {
         {!loading && products &&  <Carousel products={products} />}
       </section>
 
-      <h1>All Products</h1>
+      <Header heading={"All Products"}/>
       {loading && <p>Loading...</p>}
       {!loading && products && <ProductList products={products}/>}
     </main>
