@@ -90,9 +90,9 @@ const ProductPage = () => {
       {/* <p>Left in stock: {variants[currentVariant]?.quantity ?? "unknown"}</p> */}
       {/* <p>Left in stock: { variants && variants[currentVariant].quantity}</p> */}
 
-      <p>Variant: {variants.length > 0 && variants[currentVariant].variant}</p>
+      <p>Option: {variants.length > 0 && variants[currentVariant].variant}</p>
       {variants.map((variant, index) => {
-        return <button onClick={() => handleChangeVariant(index)} key={index}>
+        return <button disabled={variant.quantity === 0} onClick={() => handleChangeVariant(index)} key={index}>
           {variant.variant}
         </button>
       })}

@@ -28,8 +28,8 @@ a {
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
+  border-radius: 3px;
+  border: 1px solid grey;
   padding: 0.6em 1.2em;
   //padding: 4px 6px;
   font-size: 1em;
@@ -40,7 +40,11 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  //border-color: #646cff;
+  &:disabled {
+    //border-color: transparent;
+    cursor: default;
+  }
 }
 button:focus,
 button:focus-visible {
