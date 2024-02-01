@@ -15,7 +15,7 @@ const ProductPage = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [variants, setVariants] = useState([]);
-  const [currentVariant, setCurrentVariant] = useState(0);
+  const [currentVariant, setCurrentVariant] = useState(null);
   //const [maxCount, setMaxCount] = useState(null);
   const [favourite, setFavourite] = useState(null)
 
@@ -37,7 +37,12 @@ const ProductPage = () => {
   //attempting variants below
   useEffect(() => {
     getProductVariants(id)
-    .then((result) => setVariants(result))
+    .then((result) => {
+      setVariants(result);
+      console.log(result);
+      const defaultVariant = result.findIndex(variant => variant.quantity > 0);
+      defaultVariant >= 0 ? setCurrentVariant(defaultVariant) : setCurrentVariant(null);
+    })
   }, []);
 
   const handleChangeVariant = (variantIndex) => {
@@ -86,11 +91,12 @@ const ProductPage = () => {
       <h1>{product.productName}</h1>
         
       <p>${product.price}</p>
-      <p>Left in stock: {variants.length > 0 && variants[currentVariant]?.quantity}</p>
+      <p>Left in stock: {currentVariant !== null ? variants[currentVariant].quantity : 0}</p>
+      {/* <p>Left in stock: {variants.length > 0 && variants[currentVariant]?.quantity}</p> */}
       {/* <p>Left in stock: {variants[currentVariant]?.quantity ?? "unknown"}</p> */}
       {/* <p>Left in stock: { variants && variants[currentVariant].quantity}</p> */}
 
-      <p>Option: {variants.length > 0 && variants[currentVariant].variant}</p>
+      <p>Option: {(variants.length > 0 && currentVariant !== null && variants[currentVariant].variant) ?? null}</p>
       {variants.map((variant, index) => {
         return <button disabled={variant.quantity === 0} onClick={() => handleChangeVariant(index)} key={index}>
           {variant.variant}
@@ -98,8 +104,8 @@ const ProductPage = () => {
       })}
 
       <p>Quantity: {qty}</p>
-      {variants.length > 0 && <Counter maxCount={variants[currentVariant].quantity} qty={qty} setQty={setQty}/>}
-      <button onClick={handleAddToCart}>Add to Cart</button>
+      {variants.length > 0 && <Counter maxCount={currentVariant !== null ? variants[currentVariant].quantity : 1} qty={qty} setQty={setQty}/>}
+      <button onClick={handleAddToCart} disabled={currentVariant === null}>Add to Cart</button>
       <button onClick={() => {toggleFavourite(id); setFavourite(!favourite)}}>{product.favourited ? "Favourited" : "Add to Favourites"}</button>
       </>)
       }
