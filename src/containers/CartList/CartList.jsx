@@ -5,7 +5,9 @@ import styles from "./CartList.module.scss";
 
 const CartList = () => {
   const { cart, setCart } = useContext(CartContext);
-  //subtotal using state? or using map then reduce from js challenges?
+
+  //total cost
+  const subtotal = cart.reduce((total, item) => total + (item.pricePerUnit * item.units), 0);
 
   return (
     <section className={styles.container}>
@@ -23,7 +25,7 @@ const CartList = () => {
         />
       })}
 
-      {cart.length > 0  && <p>Subtotal:</p>}
+      {cart.length > 0  && <p className={styles.subtotal}>Subtotal: ${subtotal}</p>}
       {cart.length === 0  && <p>Nothing in your cart right now</p>}
     </section>
   )

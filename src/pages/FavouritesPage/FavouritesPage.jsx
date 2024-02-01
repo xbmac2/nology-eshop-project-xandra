@@ -1,6 +1,7 @@
 import { getAllProducts } from "../../services/products";
 import { useState, useEffect } from "react";
 import ProductList from "../../containers/ProductList/ProductList";
+import Header from "../../components/Header/Header";
 
 const FavouritesPage = () => {
 
@@ -24,7 +25,7 @@ const FavouritesPage = () => {
 
   return (
     <main>
-      <h1>Favourites</h1>
+      <Header heading={"Favourites"} />
       {loading && <p>Loading...</p>}
       {!loading && products && <ProductList products={favouriteProducts}/>}
     </main>
