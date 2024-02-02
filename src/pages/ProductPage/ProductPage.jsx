@@ -39,7 +39,7 @@ const ProductPage = () => {
     getProductVariants(id)
     .then((result) => {
       setVariants(result);
-      console.log(result);
+      //console.log(result);
       const defaultVariant = result.findIndex(variant => variant.quantity > 0);
       defaultVariant >= 0 ? setCurrentVariant(defaultVariant) : setCurrentVariant(null);
     })
@@ -47,7 +47,7 @@ const ProductPage = () => {
 
   const handleChangeVariant = (variantIndex) => {
     setCurrentVariant(variantIndex);
-    console.log(variantIndex)
+    //console.log(variantIndex)
   }
 
   //to solve quantity and variant issue
@@ -64,17 +64,51 @@ const ProductPage = () => {
 
   const handleAddToCart = () => {
 
-    const item = {
-      productId: variants[currentVariant].id,
-      productName: product.productName,
-      image: variants[currentVariant].image,
-      variant: variants[currentVariant].variant,
-      pricePerUnit: product.price,
-      units: qty,
-      amountInStock: variants[currentVariant].quantity
-    };
-    setCart([...cart, item]);
-    //console.log(item.amountInStock);
+    if (cart.some((item) => item.productId === variants[currentVariant].id)) {
+      const updatedCart = cart.map((item) => {
+        if (item.productId !== variants[currentVariant].id) {
+          return item;
+        } else {
+          //cannot add to the cart more units than in stock
+          if (item.units + qty > variants[currentVariant].quantity) {
+            return {
+              productId: variants[currentVariant].id,
+              productName: product.productName,
+              image: variants[currentVariant].image,
+              variant: variants[currentVariant].variant,
+              pricePerUnit: product.price,
+              units: variants[currentVariant].quantity,
+              amountInStock: variants[currentVariant].quantity
+            }
+          }
+          return {
+            productId: variants[currentVariant].id,
+            productName: product.productName,
+            image: variants[currentVariant].image,
+            variant: variants[currentVariant].variant,
+            pricePerUnit: product.price,
+            units: item.units + qty,
+            amountInStock: variants[currentVariant].quantity
+          }
+        }
+      })
+      //console.log(updatedCart)
+      setCart(updatedCart);
+    } else {
+      const item = {
+        productId: variants[currentVariant].id,
+        productName: product.productName,
+        image: variants[currentVariant].image,
+        variant: variants[currentVariant].variant,
+        pricePerUnit: product.price,
+        units: qty,
+        amountInStock: variants[currentVariant].quantity
+      };
+      setCart([...cart, item]);
+      //console.log(item.amountInStock);
+    }
+
+    
   }
 
   return (
