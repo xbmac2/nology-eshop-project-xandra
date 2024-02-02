@@ -1,9 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { getProductById, getProductVariants, toggleFavourite } from "../../services/products";
 import styles from "./ProductPage.module.scss"
 import Counter from "../../components/Counter/Counter";
 import { CartContext } from "../../context/CartContextProvider";
+import Carousel from "../../components/Carousel/Carousel";
+import Header from "../../components/Header/Header";
 
 
 const ProductPage = () => {
@@ -106,14 +108,18 @@ const ProductPage = () => {
       };
       setCart([...cart, item]);
       //console.log(item.amountInStock);
-    }
+    } 
+  };
 
-    
-  }
+  //variants for carousel
 
   return (
-    <main>
-      {/* <h1>Product name</h1> */}
+
+    <Fragment>
+      <div className={styles.center}>
+      {product && <Carousel products={variants.some((variant) => variant.image === product.image) ? variants : variants.concat(product)}/>}
+      </div>
+    <main className={styles.container}>
 
       {loading && <p>Loading...</p>}
       {errorMessage && <p>{errorMessage}</p>}
@@ -121,29 +127,38 @@ const ProductPage = () => {
       {product && 
       ( <>
 
-      <img src={product.image} className={styles.img}/>
+      
+      {/* <img src={product.image} className={styles.img}/> */}
       <h1>{product.productName}</h1>
-        
-      <p>${product.price}</p>
-      <p>Left in stock: {currentVariant !== null ? variants[currentVariant].quantity : 0}</p>
-      {/* <p>Left in stock: {variants.length > 0 && variants[currentVariant]?.quantity}</p> */}
-      {/* <p>Left in stock: {variants[currentVariant]?.quantity ?? "unknown"}</p> */}
-      {/* <p>Left in stock: { variants && variants[currentVariant].quantity}</p> */}
+      
 
-      <p>Option: {(variants.length > 0 && currentVariant !== null && variants[currentVariant].variant) ?? null}</p>
-      {variants.map((variant, index) => {
+      <div className={styles.info}>
+        <p>${product.price}</p>
+        <p>Left in stock: {currentVariant !== null ? variants[currentVariant].quantity : 0}</p>
+
+        <p>Option: {(variants.length > 0 && currentVariant !== null && variants[currentVariant].variant) ?? null}</p>
+
+        <div className={styles.btn__container}>
+        {variants.map((variant, index) => {
         return <button disabled={variant.quantity === 0} onClick={() => handleChangeVariant(index)} key={index}>
           {variant.variant}
         </button>
-      })}
+        })}
+        </div>
 
-      <p>Quantity: {qty}</p>
-      {variants.length > 0 && <Counter maxCount={currentVariant !== null ? variants[currentVariant].quantity : 1} qty={qty} setQty={setQty}/>}
-      <button onClick={handleAddToCart} disabled={currentVariant === null}>Add to Cart</button>
-      <button onClick={() => {toggleFavourite(id); setFavourite(!favourite)}}>{product.favourited ? "Favourited" : "Add to Favourites"}</button>
-      </>)
-      }
+        <p>Quantity: {qty}</p>
+        {variants.length > 0 && <Counter maxCount={currentVariant !== null ? variants[currentVariant].quantity : 1} qty={qty} setQty={setQty}/>}
+
+        <div className={styles.btn__container}>
+        <button onClick={handleAddToCart} disabled={currentVariant === null}>Add to Cart</button>
+        <button onClick={() => {toggleFavourite(id); setFavourite(!favourite)}}>{favourite ? "Favourited" : "Add to Favourites"}</button>
+        </div>
+
+
+      </div>
+      </>)}
     </main>
+    </Fragment>
   )
 }
 
