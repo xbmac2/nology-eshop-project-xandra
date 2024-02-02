@@ -1,13 +1,15 @@
+import { Link } from "react-router-dom";
 import styles from "./Carousel.module.scss";
-import { useState } from 'react';
+import { useState } from "react";
 
-const Carousel = ({ products }) => {
+const Carousel2 = ({ products }) => {
 
   const featuredProducts = products.slice(5, 9);
   const images = featuredProducts.map((product) => product.image);
-  //console.log(images);
+  const imageIds = featuredProducts.map((product) => product.id);
 
   const [activeIndex, setActiveIndex] = useState(0);
+
   const nextSlide = () => {
     setActiveIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
@@ -20,18 +22,15 @@ const Carousel = ({ products }) => {
   };
 
   return (
-    <div className={styles.carousel}>
-      <button onClick={prevSlide} className={styles.btn.concat(" ", styles.btn__prev)}>&lt;</button>
-      
-      <img
-        src={images[activeIndex]}
-        className={styles.img}
-      />
-      <button onClick={nextSlide} className={styles.btn.concat(" ", styles.btn__next)}>
-        &gt;
-      </button>
+    <div className={styles.container}>
+      <button className={styles.btn} onClick={prevSlide}>&#x2190;</button>
+      <Link to={`/product/${imageIds[activeIndex]}`}>
+      <img src={images[activeIndex]} className={styles.image}/>
+      </Link>
+      <button className={styles.btn} onClick={nextSlide}>&#x2192;</button>
+
     </div>
   )
 }
 
-export default Carousel
+export default Carousel2
