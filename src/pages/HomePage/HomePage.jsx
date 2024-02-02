@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 import styles from "./HomePage.module.scss"
 import { getAllProducts, toggleFavourite } from "../../services/products";
 import ProductList from "../../containers/ProductList/ProductList";
-import Carousel from "../../components/Carousel/Carousel";
 import Header from "../../components/Header/Header";
+import Carousel from "../../components/Carousel/Carousel";
 
 const HomePage = () => {
 
@@ -25,7 +25,9 @@ const HomePage = () => {
     <main >
 
       <section className={styles.center}>
-        <h2>Featured</h2>
+        <h2 className={styles.feature__heading}>Featured</h2>
+        {/* {!loading && products &&  <Carousel products={products} />} */}
+
         {!loading && products &&  <Carousel products={products} />}
       </section>
 

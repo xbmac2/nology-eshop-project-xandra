@@ -1,39 +1,29 @@
-.carousel {
-  position: relative;
-  max-width: 600px;
-  overflow: hidden;
+.container {
+  //border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  //border: 1px solid green;
-  //padding: 0px, 10px;
+  width: 320px;
 }
+
+.image {
+  max-width: 230px;
+  padding: 0, 1rem;
+}
+
 .btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  font-size: 1.5rem;
+  padding: 0.5rem;
+  font-size: 1.6rem;
   border: none;
-  padding: 10px; //1rem;
-  cursor: pointer;
-  z-index: 1;
-  transition: background-color 0.3s;
+  background-color: transparent;
+
+  &:focus, :focus-visible {
+    outline: none;
+  }
 }
-.btn:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-.btn__prev {
-  left: 0;
-}
-.btn__next {
-  right: 0;
-}
-.img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.3s ease-in-out;
-}
-.img:hover {
-  transform: scale(1.05);
-}
+
+// button:focus,
+// button:focus-visible {
+//   outline: 4px auto -webkit-focus-ring-color;
+// }
