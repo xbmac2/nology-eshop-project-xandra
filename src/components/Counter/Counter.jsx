@@ -24,7 +24,7 @@ const Counter = ({ maxCount, qty, setQty }) => {
       {/* <p>Quantity: {qty}</p> */}
       <div className={styles.counter}>
         <button onClick={handleDecrement}>-</button>
-        <input type="number" name="" id="" className={styles.input} value={qty} min={1} max={maxCount} onChange={e => setQty(e.target.value)}/>
+        <input readOnly type="number" name="" id="" className={styles.input} value={qty} min={1} max={maxCount} onChange={e => setQty(e.target.value)}/>
         <button onClick={handleIncrement}>+</button>
       </div>
       

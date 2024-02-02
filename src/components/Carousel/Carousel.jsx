@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import styles from "./Carousel.module.scss";
 import { useState } from "react";
 
-const Carousel2 = ({ products }) => {
+const Carousel = ({ products }) => {
 
-  const featuredProducts = products.slice(5, 9);
-  const images = featuredProducts.map((product) => product.image);
-  const imageIds = featuredProducts.map((product) => product.id);
+  //const featuredProducts = products.slice(5, 9);
+  const images = products.map((product) => product.image);
+  const imageIds = products.map((product) => product.id);
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -33,4 +33,4 @@ const Carousel2 = ({ products }) => {
   )
 }
 
-export default Carousel2
+export default Carousel

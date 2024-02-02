@@ -28,7 +28,7 @@ const HomePage = () => {
         <h2 className={styles.feature__heading}>Featured</h2>
         {/* {!loading && products &&  <Carousel products={products} />} */}
 
-        {!loading && products &&  <Carousel products={products} />}
+        {!loading && products &&  <Carousel products={products.slice(5, 9)} />}
       </section>
 
       <Header heading={"All Products"}/>
