@@ -7,3 +7,16 @@
   justify-content: space-evenly;
   align-items: center;
 }
+
+.name {
+  font-family: 'Dynalight', cursive;
+  font-weight: 500;
+  font-size: 45px;
+  color: #4D2574;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}

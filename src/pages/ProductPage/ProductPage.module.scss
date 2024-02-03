@@ -11,15 +11,18 @@
 }
 
 .btn__container {
+  //border: 1px solid black;
   display: flex;
   justify-content: center;
   gap: 1rem;
   padding-top: 8px;
+  width: calc(100vw - 18px);
 }
 
 .info {
   display: flex;
   flex-direction: column;
+  align-items: center;
   row-gap: 5px;
 }
 .center {

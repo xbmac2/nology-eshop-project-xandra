@@ -3,7 +3,8 @@ import styles from "./Footer.module.scss";
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <p>Dream Florist</p>
+      <h3>Dream Florist</h3>
+      <small>Enjoy the magic of flowers forever with our handcrafted silk blooms.</small>
     </footer>
   )
 }
