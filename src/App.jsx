@@ -10,6 +10,7 @@ import NavBar from './components/NavBar/NavBar'
 import FavouritesPage from './pages/FavouritesPage/FavouritesPage'
 import ProductPage from './pages/ProductPage/ProductPage'
 import CartContextProvider from './context/CartContextProvider'
+import Footer from './components/Footer/Footer'
 
 function App() {
   
@@ -29,6 +30,8 @@ function App() {
         <Route path="/cart" element={<CartPage />}/>
         <Route path="/product/:id" element={<ProductPage />}/>
       </Routes>
+
+      <Footer />
     </CartContextProvider>
     </BrowserRouter>
   )

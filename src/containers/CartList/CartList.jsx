@@ -14,8 +14,9 @@ const CartList = () => {
       
       {cart.length > 0 && cart.map((item) => {
         return <CartCard 
-          key={item.productId}
+          key={item.variantId}
           productId={item.productId}
+          variantId={item.variantId}
           productName={item.productName}
           pricePerUnit={item.pricePerUnit}
           variant={item.variant}

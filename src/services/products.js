@@ -65,4 +65,26 @@ export const toggleFavourite = async (id) => {
   })
 
   //testcomm
-}
+};
+
+//checking out cart updates item quantity
+export const updateQuantity = async (productId, variantId, unitsPurchased) => {
+  const variantDocRef = doc(db, "flowers", productId, "variants", variantId);
+
+  const docSnap = await getDoc(variantDocRef);
+
+  // if (docSnap.exists()) {
+  //   //console.log("Document data:", docSnap.data());
+
+
+
+  // } else {
+  //   // docSnap.data() will be undefined in this case
+  //   console.log("No such document!");
+  // }
+
+  await updateDoc(variantDocRef, {
+    quantity: docSnap.data().quantity - unitsPurchased
+  })
+
+};

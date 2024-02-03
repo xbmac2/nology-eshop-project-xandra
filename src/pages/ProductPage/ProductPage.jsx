@@ -66,15 +66,16 @@ const ProductPage = () => {
 
   const handleAddToCart = () => {
 
-    if (cart.some((item) => item.productId === variants[currentVariant].id)) {
+    if (cart.some((item) => item.variantId === variants[currentVariant].id)) {
       const updatedCart = cart.map((item) => {
-        if (item.productId !== variants[currentVariant].id) {
+        if (item.variantId !== variants[currentVariant].id) {
           return item;
         } else {
           //cannot add to the cart more units than in stock
           if (item.units + qty > variants[currentVariant].quantity) {
             return {
-              productId: variants[currentVariant].id,
+              productId: id,
+              variantId: variants[currentVariant].id,
               productName: product.productName,
               image: variants[currentVariant].image,
               variant: variants[currentVariant].variant,
@@ -84,7 +85,8 @@ const ProductPage = () => {
             }
           }
           return {
-            productId: variants[currentVariant].id,
+            productId: id,
+            variantId: variants[currentVariant].id,
             productName: product.productName,
             image: variants[currentVariant].image,
             variant: variants[currentVariant].variant,
@@ -98,7 +100,8 @@ const ProductPage = () => {
       setCart(updatedCart);
     } else {
       const item = {
-        productId: variants[currentVariant].id,
+        productId: id,
+        variantId: variants[currentVariant].id,
         productName: product.productName,
         image: variants[currentVariant].image,
         variant: variants[currentVariant].variant,
