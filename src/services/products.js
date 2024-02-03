@@ -65,4 +65,23 @@ export const toggleFavourite = async (id) => {
   })
 
   //testcomm
-}
+};
+
+//checking out cart updates item quantity
+export const updateQuantity = async (id) => {
+  const docRef = doc(db, "flowers", id);
+
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    console.log("Document data:", docSnap.data());
+  } else {
+    // docSnap.data() will be undefined in this case
+    console.log("No such document!");
+  }
+
+  // await updateDoc(docRef, {
+  //   favourited: !docSnap.data().favourited
+  // })
+
+};
