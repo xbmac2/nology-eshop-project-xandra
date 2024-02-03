@@ -11,6 +11,7 @@ import FavouritesPage from './pages/FavouritesPage/FavouritesPage'
 import ProductPage from './pages/ProductPage/ProductPage'
 import CartContextProvider from './context/CartContextProvider'
 import Footer from './components/Footer/Footer'
+import OverFooterWrapper from './containers/OverFooterWrapper/OverFooterWrapper'
 
 function App() {
   
@@ -22,6 +23,7 @@ function App() {
     <BrowserRouter>
     <CartContextProvider>
 
+      <OverFooterWrapper>
       <NavBar />
 
       <Routes>
@@ -31,6 +33,7 @@ function App() {
         <Route path="/product/:id" element={<ProductPage />}/>
       </Routes>
 
+      </OverFooterWrapper>
       <Footer />
     </CartContextProvider>
     </BrowserRouter>

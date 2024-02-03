@@ -1,7 +1,17 @@
 .footer {
-  min-height: 150px;
+  height: 150px;
   width: 100vw;
   background-color: #d8c3ec;
 
   margin-top: 3rem;
+  
+  text-align: left;
+  padding: 1rem;
+
+  color: #4D2574;
+
+  & h3 {
+    font-family: 'Dynalight', cursive;
+    font-size: 35px;
+  }
 }

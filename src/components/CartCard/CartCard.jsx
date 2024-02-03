@@ -2,8 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import Counter from "../Counter/Counter";
 import styles from "./CartCard.module.scss";
 import { CartContext } from "../../context/CartContextProvider";
+import { Link } from "react-router-dom";
 
-const CartCard = ({ productName, pricePerUnit, variant, image, units, amountInStock, productId}) => {
+const CartCard = ({ productName, pricePerUnit, variant, image, units, amountInStock, productId, variantId}) => {
 
   const totalForItem = pricePerUnit * units;
   const [qty, setQty] = useState(units);
@@ -12,7 +13,7 @@ const CartCard = ({ productName, pricePerUnit, variant, image, units, amountInSt
   const { cart, setCart } = useContext(CartContext);
   useEffect(() => {
     const editedCart = cart.map((item) => {
-      if (item.productId !== productId) {
+      if (item.variantId !== variantId) {
         return item;
       } else {
         return {
@@ -27,13 +28,13 @@ const CartCard = ({ productName, pricePerUnit, variant, image, units, amountInSt
   //remove item
   const removeItem = () => {
     setCart(cart.filter(item =>
-      item.productId !== productId
+      item.variantId !== variantId
     ));
   }
 
   return (
     <article className={styles.card}>
-      <img src={image}/>
+      <Link to={`/product/${productId}`}><img src={image}/></Link>
       <div className={styles.container}>
         <p><b>{productName}</b></p>
         <p>{variant}</p>
