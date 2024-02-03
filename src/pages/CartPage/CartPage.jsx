@@ -17,8 +17,15 @@ const CartPage = () => {
   }, []);
 
   const handleCheckout = () => {
-    updateQuantity("EF6d5M7rlXl0HH15ij8Z");
-    console.log(cart);
+
+    cart.forEach((item) => {
+      updateQuantity(item.productId, item.variantId, item.units);
+      //console.log(item);
+    });
+
+    setCheckedOut(true);
+    setCart([]);
+    //console.log(cart);
   };
 
   
@@ -28,8 +35,8 @@ const CartPage = () => {
     <main className={styles.page}>
       <Header heading={"Your Cart"}/>
       <div className={styles.container}>
-        <CartList />
-        {cart.length > 0 && <button onClick={handleCheckout}>Checkout</button>}
+        {checkedOut ? <p>Thank you for placing your order</p> : <><CartList />
+        {cart.length > 0 && <button onClick={handleCheckout}>Checkout</button>}</>}
       </div>
       
     </main>
