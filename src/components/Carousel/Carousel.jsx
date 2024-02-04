@@ -4,7 +4,6 @@ import { useState } from "react";
 
 const Carousel = ({ products }) => {
 
-  //const featuredProducts = products.slice(5, 9);
   const images = products.map((product) => product.image);
   const imageIds = products.map((product) => product.id);
 

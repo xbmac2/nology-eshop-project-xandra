@@ -17,11 +17,7 @@ const FavouritesPage = () => {
     });
   }, []);
 
-  //const prodCopy = [...products]
-
   const favouriteProducts = products.filter((product) => product.favourited)
-
-  //console.log(favouriteProducts)
 
   return (
     <main>

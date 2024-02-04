@@ -38,11 +38,9 @@ const CartCard = ({ productName, pricePerUnit, variant, image, units, amountInSt
       <div className={styles.container}>
         <p><b>{productName}</b></p>
         <p>{variant}</p>
-        {/* <p>qty{units}</p> */}
         <p>${totalForItem}</p>
         <span className={styles.inline}>
           <Counter qty={qty} setQty={setQty} maxCount={amountInStock}/>
-          
           <small onClick={removeItem}>Remove</small>
         </span>
         

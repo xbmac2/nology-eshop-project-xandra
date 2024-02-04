@@ -31,7 +31,6 @@ button {
   border-radius: 3px;
   border: 1px solid grey;
   padding: 0.6em 1.2em;
-  //padding: 4px 6px;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -45,9 +44,7 @@ button {
   }
 }
 button:hover {
-  //border-color: #646cff;
   &:disabled {
-    //border-color: transparent;
     cursor: default;
   }
 }
@@ -55,16 +52,3 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
-// @media (prefers-color-scheme: light) {
-//   :root {
-//     color: #213547;
-//     background-color: #ffffff;
-//   }
-//   a:hover {
-//     //color: #747bff;
-//   }
-//   button {
-//     background-color: #f9f9f9;
-//   }
-// }

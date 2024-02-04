@@ -7,7 +7,6 @@ import { updateQuantity } from "../../services/products";
 
 const CartPage = () => {
   const { cart, setCart } = useContext(CartContext);
-
   const [checkedOut, setCheckedOut] = useState(null);
 
   useEffect(() => {
@@ -17,20 +16,13 @@ const CartPage = () => {
   }, []);
 
   const handleCheckout = () => {
-
     cart.forEach((item) => {
       updateQuantity(item.productId, item.variantId, item.units);
-      //console.log(item);
     });
-
     setCheckedOut(true);
     setCart([]);
-    //console.log(cart);
   };
 
-  
-
-  //console.log(cart);
   return (
     <main className={styles.page}>
       <Header heading={"Your Cart"}/>
@@ -38,7 +30,6 @@ const CartPage = () => {
         {checkedOut ? <p>Thank you for placing your order</p> : <><CartList />
         {cart.length > 0 && <button onClick={handleCheckout}>Checkout</button>}</>}
       </div>
-      
     </main>
   )
 }

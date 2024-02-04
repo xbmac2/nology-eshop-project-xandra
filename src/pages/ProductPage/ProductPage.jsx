@@ -5,7 +5,6 @@ import styles from "./ProductPage.module.scss"
 import Counter from "../../components/Counter/Counter";
 import { CartContext } from "../../context/CartContextProvider";
 import Carousel from "../../components/Carousel/Carousel";
-import Header from "../../components/Header/Header";
 
 
 const ProductPage = () => {
@@ -18,7 +17,6 @@ const ProductPage = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [variants, setVariants] = useState([]);
   const [currentVariant, setCurrentVariant] = useState(null);
-  //const [maxCount, setMaxCount] = useState(null);
   const [favourite, setFavourite] = useState(null)
 
   const [qty, setQty] = useState(1);
@@ -36,12 +34,11 @@ const ProductPage = () => {
     .finally(() => setLoading(false))
   }, [id]);
 
-  //attempting variants below
+  //fetches variants
   useEffect(() => {
     getProductVariants(id)
     .then((result) => {
       setVariants(result);
-      //console.log(result);
       const defaultVariant = result.findIndex(variant => variant.quantity > 0);
       defaultVariant >= 0 ? setCurrentVariant(defaultVariant) : setCurrentVariant(null);
     })
@@ -49,23 +46,21 @@ const ProductPage = () => {
 
   const handleChangeVariant = (variantIndex) => {
     setCurrentVariant(variantIndex);
-    //console.log(variantIndex)
   }
 
-  //to solve quantity and variant issue
+  //selecting another variant resets qty counter
   useEffect(() => {
     if (!variants.length > 0) {
       return;
     }
-    //setMaxCount(variants[currentVariant].quantity)
     setQty(1);
   }, [currentVariant]);
 
-  //cart functionality below
+  //cart functionality
   const { cart, setCart } = useContext(CartContext);
-
   const handleAddToCart = () => {
 
+    //prevent same item appearing twice in cart
     if (cart.some((item) => item.variantId === variants[currentVariant].id)) {
       const updatedCart = cart.map((item) => {
         if (item.variantId !== variants[currentVariant].id) {
@@ -96,7 +91,6 @@ const ProductPage = () => {
           }
         }
       })
-      //console.log(updatedCart)
       setCart(updatedCart);
     } else {
       const item = {
@@ -110,11 +104,9 @@ const ProductPage = () => {
         amountInStock: variants[currentVariant].quantity
       };
       setCart([...cart, item]);
-      //console.log(item.amountInStock);
     } 
   };
 
-  //variants for carousel
 
   return (
 
@@ -130,8 +122,6 @@ const ProductPage = () => {
       {product && 
       ( <>
 
-      
-      {/* <img src={product.image} className={styles.img}/> */}
       <h1>{product.productName}</h1>
       
 

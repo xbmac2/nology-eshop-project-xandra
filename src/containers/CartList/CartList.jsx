@@ -4,13 +4,12 @@ import CartCard from "../../components/CartCard/CartCard";
 import styles from "./CartList.module.scss";
 
 const CartList = () => {
-  const { cart, setCart } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
 
-  //total cost
   const subtotal = cart.reduce((total, item) => total + (item.pricePerUnit * item.units), 0);
 
   return (
-    <section className={styles.container}>
+    <section>
       
       {cart.length > 0 && cart.map((item) => {
         return <CartCard 

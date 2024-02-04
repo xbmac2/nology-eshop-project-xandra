@@ -4,12 +4,6 @@ import { db } from "../../config/firestore.js"
 export const getAllProducts = async () => {
   const querySnapshot = await getDocs(collection(db, "flowers"));
 
-  //console.log(querySnapshot, "query snapshot");
-
-  // querySnapshot.forEach((doc) => {
-  //   console.log(doc.id, doc.data());
-  // })
-
   const dataToReturn = querySnapshot.docs.map((doc) => {
     return {
       id: doc.id,
@@ -17,12 +11,10 @@ export const getAllProducts = async () => {
     };
   });
 
-  //console.log(dataToReturn);
-  return dataToReturn; //an array of Objects
+  return dataToReturn;
 }
 
 export const getProductById = async (id) => {
-  
   const docRef = doc(db, "flowers", id);
   const docSnap = await getDoc(docRef);
 
@@ -35,12 +27,7 @@ export const getProductById = async (id) => {
 }
 
 export const getProductVariants = async (id) => {
-
   const querySnapshot = await getDocs(collection(db, "flowers", id, "variants"));
-
-  // querySnapshot.forEach((doc) => {
-  //   console.log(doc.id, "->", doc.data());
-  // });
 
   const variantsArr = querySnapshot.docs.map((doc) => {
     return {
@@ -52,19 +39,14 @@ export const getProductVariants = async (id) => {
   return variantsArr;
 }
 
-//toggling faves
 export const toggleFavourite = async (id) => {
   const docRef = doc(db, "flowers", id);
 
   const docSnap = await getDoc(docRef);
 
-  //console.log(docSnap.data());
-
   await updateDoc(docRef, {
     favourited: !docSnap.data().favourited
   })
-
-  //testcomm
 };
 
 //checking out cart updates item quantity
@@ -72,16 +54,6 @@ export const updateQuantity = async (productId, variantId, unitsPurchased) => {
   const variantDocRef = doc(db, "flowers", productId, "variants", variantId);
 
   const docSnap = await getDoc(variantDocRef);
-
-  // if (docSnap.exists()) {
-  //   //console.log("Document data:", docSnap.data());
-
-
-
-  // } else {
-  //   // docSnap.data() will be undefined in this case
-  //   console.log("No such document!");
-  // }
 
   await updateDoc(variantDocRef, {
     quantity: docSnap.data().quantity - unitsPurchased
