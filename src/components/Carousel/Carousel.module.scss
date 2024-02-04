@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 320px;
+}
+
+.image {
+  max-width: 230px;
+  padding: 0, 1rem;
+}
+
+.btn {
+  padding: 0.5rem;
+  font-size: 1.6rem;
+  border: none;
+  background-color: transparent;
+
+  &:focus, :focus-visible {
+    outline: none;
+  }
+}

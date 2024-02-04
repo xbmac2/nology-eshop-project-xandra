@@ -1,0 +1,28 @@
+.img {
+  max-width: 280px;
+}
+
+.container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.btn__container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 8px;
+  width: calc(100vw - 18px);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 5px;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}

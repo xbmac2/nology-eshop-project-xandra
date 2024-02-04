@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import styles from "./HomePage.module.scss"
 import { getAllProducts } from "../../services/products";
 import ProductList from "../../containers/ProductList/ProductList";
+import Header from "../../components/Header/Header";
+import Carousel from "../../components/Carousel/Carousel";
 
 const HomePage = () => {
 
@@ -18,8 +20,14 @@ const HomePage = () => {
   }, [])
 
   return (
-    <main>
-      <h1>All Products</h1>
+    <main >
+
+      <section className={styles.center}>
+        <h2 className={styles.feature__heading}>Featured</h2>
+        {!loading && products &&  <Carousel products={products.slice(5, 9)} />}
+      </section>
+
+      <Header heading={"All Products"}/>
       {loading && <p>Loading...</p>}
       {!loading && products && <ProductList products={products}/>}
     </main>

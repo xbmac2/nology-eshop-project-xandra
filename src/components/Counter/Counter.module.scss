@@ -1,0 +1,38 @@
+.input {
+  -webkit-appearance: none;
+  margin: 0;
+  -moz-appearance: textfield;
+
+  width: fit-content;
+  border: none;
+  text-align: center;
+  font-family: inherit;
+
+  max-width: 35px;
+  padding: auto, 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+}
+
+.counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  max-width: 142px;
+
+  & button {
+    padding: 2px 10px;
+    border-radius: 0;
+    border: none;
+  }
+}
+
+.btn {
+  padding: 6px 12px;
+}
